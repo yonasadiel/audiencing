@@ -21,7 +21,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "deploy": "PUBLIC_URL=/audiencing npm run build && git add -f build && git checkout gh-pages && rm -r static && mv build/* . && git add . && git commit -m 'Deploy gh-pages' && git push && git checkout master"
   },
   "eslintConfig": {
     "extends": [
