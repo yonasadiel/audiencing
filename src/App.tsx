@@ -75,14 +75,25 @@ type AppWrapperProps = {
   footer?: string;
 } & React.PropsWithChildren;
 
-const AppWrapper = ({ children, footer }: AppWrapperProps) => (
-  <div className="bg-teal-50 h-screen w-screen p-5 flex flex-col justify-center items-center">
-    <div className="w-full h-full cc flex flex-col justify-center items-stretch">
-      {children}
+const AppWrapper = ({ children, footer }: AppWrapperProps) => {
+  const handleReset = () => {
+    const confirmed = window.confirm('Do you want to reset all your progress?');
+    if (confirmed) {
+      clearMeta();
+      window.location.reload();
+    }
+  }
+  return (
+    <div className="bg-teal-50 h-screen w-screen p-5 flex flex-col justify-center items-center">
+      <div className="w-full h-full cc flex flex-col justify-center items-stretch">
+        {children}
+      </div>
+      {!!footer && (
+        <small className="text-center"><strong>{footer}</strong> <br/> <span className="cursor-pointer" onClick={handleReset}>having technical issues?</span></small>
+      )}
     </div>
-    <small>{footer || ""}</small>
-  </div>
-);
+  );
+}
 
 
 export default App;
